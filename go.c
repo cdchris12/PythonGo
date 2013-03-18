@@ -16,6 +16,10 @@
 
 typedef int board_t[BOARD_SIZE][BOARD_SIZE];
 
+#define INIT_BOARD(var) \
+    board_t var; \
+    memset(var, EMPTY, sizeof(int) * BOARD_SIZE * BOARD_SIZE);
+
 enum {
     EMPTY,
     BLACK,
@@ -30,19 +34,17 @@ int move(board_t board, int color, size_t row, size_t col) {
 void print_board(board_t board) {
     for (size_t r = 0; r < BOARD_SIZE; r++) {
         for (size_t c = 0; c < BOARD_SIZE; c++) {
-            if (board[r][c]) {
+            if (board[r][c])
                 printf("%d", board[r][c]);
-            } else {
+            else
                 putchar('_');
-            }
         }
         putchar('\n');
     }
 }
 
 int main() {
-    board_t board;
-    memset(board, EMPTY, sizeof(int) * BOARD_SIZE * BOARD_SIZE);
+    INIT_BOARD(board);
     move(board, BLACK, 4, 4);
     move(board, BLACK, 4, 5);
     move(board, WHITE, 3, 4);
