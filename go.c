@@ -14,7 +14,7 @@
 
 #define BOARD_SIZE 19
 
-typedef int board_t[19][19];
+typedef int board_t[BOARD_SIZE][BOARD_SIZE];
 
 enum {
     EMPTY,
