@@ -11,6 +11,7 @@ def runTestSuite():
     results.append( doubleEnclosure() )
     results.append( quadEnclosure() )
     results.append( connDoubleQuadEnclosure() )
+    results.append( not emptySpace() )
     
     if False not in results:
         print "-----ALL TESTS PASSED!!-----"
@@ -130,6 +131,36 @@ def connDoubleQuadEnclosure():
         assert b.board[6][7] == EMPTY
         assert b.board[7][6] == EMPTY
         assert b.board[7][7] == EMPTY
+    except AssertionError, e:
+        print b
+        print "FAIL!!!!\n"
+    else:
+        print b
+        print "PASS!!!!\n"
+    # End try/except block
+# End def
+
+def emptySpace():
+    b = Board()
+    print "Verifying empty space will not trigger enclosure:"
+    
+    b.move(BLACK, 4, 4, True)
+    b.move(BLACK, 4, 5, True)
+    b.move(BLACK, 5, 3, True)
+    b.move(WHITE, 5, 4, True)
+    #b.move(WHITE, 5, 5, True)
+    b.move(BLACK, 5, 6, True)
+    b.move(BLACK, 6, 3, True)
+    b.move(WHITE, 6, 4, True)
+    b.move(WHITE, 6, 5, True)
+    b.move(BLACK, 6, 6, True)
+    b.move(BLACK, 7, 4, True)
+    b.move(BLACK, 7, 5, True)
+    
+    try:
+        assert b.board[5][4] == WHITE
+        assert b.board[6][4] == WHITE
+        assert b.board[6][5] == WHITE
     except AssertionError, e:
         print b
         print "FAIL!!!!\n"
