@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
-# This is the test suite for my go implementation. Simply execute this file, and it'll run
-# the entire test suite for you. :-)
+# This is the test suite for my go implementation.
 
 from go import *
 
