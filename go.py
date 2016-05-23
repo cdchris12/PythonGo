@@ -54,27 +54,24 @@ class Board(object):
         
         other_color = BLACK if color == WHITE else WHITE
         
-        for a in [(0,+1),(0,-1),(+1,0),(-1,0),]:
-            if new_board[row + a[0]][col + a[1]] == other_color:
-                ret, checked = self.search(row + a[0], col + a[1], other_color, new_board)
-                if ret: # If we have an enclosure,
-                    checked = set(checked)
-                    for spot in checked:
-                        if not test:
-                            print "Removing tile at row %s, col %s because it was enclosed!!" % (spot[0], spot[1])
-                        self.board[spot[0]][spot[1]] = EMPTY # Remove all the enclosed tiles
-                    # End for
-                # End if
+        for a in [(0,+1),(0,-1),(+1,0),(-1,0)]:
+            ret, checked = self.search(row + a[0], col + a[1], other_color, new_board)
+            if ret: # If we have an enclosure,
+                checked = set(checked)
+                for spot in checked:
+                    if not test:
+                        print "Removing tile at row %s, col %s because it was enclosed!!" % (spot[0], spot[1])
+                    self.board[spot[0]][spot[1]] = EMPTY # Remove all the enclosed tiles
+                # End for
             # End if
         # End for
         # This for loop of if statements is going to do a rudimentary check for each of the 4
-        # directions a move could touch. If none of those spots are currently the other_color,
-        # then nothing needs to happen. If they are, then we're going to do a search for possible
+        # directions a move could touch. Then, we're going to do a search for possible
         # enclosures. It is possible for a single piece to enclose three or even four
         # sets of squares, so we should check all four touched squares every time.
         
         del new_board # This isn't specifically required, as Python will automatically garbage
-        # collect this object, but no harm in forcing its hand  bit early.. :-)
+        # collect this object, but no harm in forcing its hand a bit early.. :-)
     # End def
     
     def search(self, row, col, color, new_board):

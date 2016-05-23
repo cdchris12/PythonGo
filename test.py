@@ -11,7 +11,7 @@ def runTestSuite():
     results.append( doubleEnclosure() )
     results.append( quadEnclosure() )
     results.append( connDoubleQuadEnclosure() )
-    results.append( not emptySpace() )
+    results.append( emptySpace() )
     
     if False not in results:
         print "-----ALL TESTS PASSED!!-----"
@@ -22,7 +22,7 @@ def runTestSuite():
 
 def singleEnclosure():
     b = Board()
-    print "Testing a single enclosure:"
+    print "Test capturing a single enclosure:"
     
     b.move(BLACK, 4, 4, True)
     b.move(BLACK, 5, 3, True)
@@ -35,15 +35,17 @@ def singleEnclosure():
     except AssertionError, e:
         print b
         print "FAIL!!!!\n"
+        return False
     else:
         print b
         print "PASS!!!!\n"
+        return True
     # End try/except block
 # End def
 
 def doubleEnclosure():
     b = Board()
-    print "Testing a double enclosure:"
+    print "Test capturing a double enclosure:"
     
     b.move(BLACK, 4, 4, True)
     b.move(BLACK, 4, 5, True)
@@ -60,15 +62,17 @@ def doubleEnclosure():
     except AssertionError, e:
         print b
         print "FAIL!!!!\n"
+        return False
     else:
         print b
         print "PASS!!!!\n"
+        return True
     # End try/except block
 # End def
 
 def quadEnclosure():
     b = Board()
-    print "Testing a quad enclosure:"
+    print "Test capturing a quad enclosure:"
     
     b.move(BLACK, 4, 4, True)
     b.move(BLACK, 4, 5, True)
@@ -91,15 +95,17 @@ def quadEnclosure():
     except AssertionError, e:
         print b
         print "FAIL!!!!\n"
+        return False
     else:
         print b
         print "PASS!!!!\n"
+        return True
     # End try/except block
 # End def
 
 def connDoubleQuadEnclosure():
     b = Board()
-    print "Testing a connecting double quad enclosure:"
+    print "Test capturing a connecting double quad enclosure:"
     
     b.move(BLACK, 4, 4, True)
     b.move(BLACK, 4, 5, True)
@@ -134,15 +140,17 @@ def connDoubleQuadEnclosure():
     except AssertionError, e:
         print b
         print "FAIL!!!!\n"
+        return False
     else:
         print b
         print "PASS!!!!\n"
+        return True
     # End try/except block
 # End def
 
 def emptySpace():
     b = Board()
-    print "Verifying empty space will not trigger enclosure:"
+    print "Verifying empty space will not trigger capture:"
     
     b.move(BLACK, 4, 4, True)
     b.move(BLACK, 4, 5, True)
@@ -164,9 +172,11 @@ def emptySpace():
     except AssertionError, e:
         print b
         print "FAIL!!!!\n"
+        return False
     else:
         print b
         print "PASS!!!!\n"
+        return True
     # End try/except block
 # End def
 
